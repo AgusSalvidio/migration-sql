@@ -1,0 +1,6 @@
+-- Desprecio las sucursales FAC_SUCURSAL_* puesto a que son las mismas 7 que se obtienen con esta query
+INSERT INTO EL_KUELGUE.SUCURSAL
+SELECT DISTINCT SUCURSAL_DIRECCION, SUCURSAL_MAIL, SUCURSAL_TELEFONO, SUCURSAL_CIUDAD
+FROM gd_esquema.Maestra
+WHERE SUCURSAL_CIUDAD IS NOT NULL
+GO
