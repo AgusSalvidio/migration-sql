@@ -45,6 +45,9 @@ La ejecucion sin filas de resultado de una query dentro de un trigger genera la
 cancelacion de la transaccion
 'Falso'
 
+El Datamining es un conjunto de técnicas utilizadas para la exploración de un
+Datawarehouse a efectos de encontrar información oculta relevante para la toma de decisiones
+'Verdadero'
 
 #with_answers---------------------
 
@@ -660,6 +663,14 @@ Dimensiones en DW: llamamos dimensiones a aquellos datos que nos
 	definida por su clave primaria que sirve como base para la integridad 
 	referencial con la fact table.
 
+'En PL SQL o TSQL, no se puede abrir un cursor dentro de otro.'
+Falso 
+
+
+'Dado el grafo G(P,E) donde P={(a)} y E={(a,a)} decimos que el mismo es un árbol'
+Falso
+
+
 'Explique la relación existente entre la Constraints UNIQUE y PRIMARY KEY y el Objeto índice.'
 Constraint Unique: las restricciones son reglas que el motor aplica de forma 
 				   automática la Unique es para garantizar que todos los valores de una columna 
@@ -1133,6 +1144,22 @@ reglas de negocio establecidas.
 - Evitar la redundanciade los datos.
 - Evitar problemas de actualización de los datos en las tablas.
 - Proteger la integridad de los datos.
+
+'Cuál es el objetivo del algoritmo de Dijkstra?'
+
+Es un algoritmo cuyo objetivo es determinar la ruta más corta, desde el nodo origen, hasta cualquier nodo de la red. Su metodología está basada en iteraciones, 
+con lo cual su complejidad aumenta a medida que aumente el tamaño de la red. 
+Para esto, hace uso y define etiquetas a partir del nodo origen y para cada uno de los nodos subsiguientes. Estas etiquetas contienen información relacionada 
+con un valor acumulado del tamaño de los arcos y con la procedencia más próxima de la ruta.
+
+'Desarrolle el concepto de Datawarehouse, en lo que respecta a utilidad, técnicas de armado, convivencia son modelos transacconales y acceso a la información.'
+Un Data Warehouse es un almacén de información orientada a sujetos, integrada, variante en el tiempo, no volátil, organizados y orientados para la toma de decisiones. 
+La información proviene de la integración de múltiples fuentes (bbdd relacionales, bbdd documentales, archivos, etc.). 
+La idea de un data Warehouse es, mediante el data mining, explotar la información contenida y poder sacar buena información para la toma de decisiones. 
+Los diferentes modelos de construcción son MOLAP (multidimensional), ROLAP (relacional) y HOLAP (hibrido).
+Existen los data marts, que permiten contar con vistas multidimensionales de cada área que componen al data warehouse.
+Tanto el DW como los data marts pueden ser implementados en un RDBMS utilizando el modelo estrella, en el cual la información está conformada por dos tipos de 
+tablas: los hechos (definen métricas de un evento específico) y las dimensiones (definen características).
 
 '¿Qué entiende por diccionario de datos, catálogo de datos o metadata?'
 ✔ Para representar una base de datos relacional, necesitamos almacenar no sólo las relaciones mismas, sino también una cantidad de información adicional acerca de las relaciones.
