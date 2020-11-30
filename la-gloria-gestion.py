@@ -2,35 +2,93 @@
 
 #parciales_tomados_2020
 #without_answers---------------------
+El arbol B+ permite busquedas por rango con claves duplicadas
+'SinRespuesta'
 
 La implementacion de un hash permite obtener a partir de una entrada X una salida Y 
 unica y reversible
 'SinRespuesta'
 
 Un Data Marts es una Datawarehouse afectado a un departamento o sector de la empresa
-'SinRespuesta'
+'Verdadero'
 
 Un store procedure es un procedimiento asociado a una base de datos, mientras que 
 un triger es un procedimiento asociado a una tabla
-'SinRespuesta'
+'Verdadero'
 
 Si un arbol binario esta completo y balanceado todas las hojas estan en el mismo 
 nivel 
-'SinRespuesta'
+'Falso'
 
 Un arbol B es la tecnica de creacion de indices que debe utilizarse cuando no se 
-tiene inform,acion del archivo a mantener ordenado
-'SinRespuesta'
-
-La ejecucion sin filas de resultado de una query dentro de un trigger genera la 
-cancelacion de la transaccion
-'SinRespuesta'
+tiene informacion del archivo a mantener ordenado
+'Falso'
 
 Una funcion en SQL es el equivalente a un Store Procedure con la diferencia que puede 
 retornar valores o una tabla
+'Falso'
+
+Si el puntero Ledge de un nodo no es nulo, entonces el nodo es un minimal
 'SinRespuesta'
 
+Un grafo que posee n nodos y (n-1) arcos siempre es un arbol 
+'Falso'
+
+Arboles – Si un árbol de 50 nodos se implementa sobre una matriz de adyacencia 
+la cantidad de posiciones ocupadas de la misma es de 49.
+'Falso'
+
+Arboles – El árbol B es más performante que el árbol B+ en el manejo de consultas por rangos
+'Falso'
+
+La ejecucion sin filas de resultado de una query dentro de un trigger genera la 
+cancelacion de la transaccion
+'Falso'
+
+
 #with_answers---------------------
+
+Un vector se puede utilizar para representar cualquier grafo restricto.  
+'Verdadero'
+
+Cuando un grafo no es unívoco, debe ser categorizado como un grafo irrestricto. 
+'VERDADERO. DADO QUE PERMITE CUALQUIER TIPO DE RELACIONES'
+
+Un motor de base de datos cuenta con su propio User Manager,File Manager y Disk mamager,por lo cual no tiene contacto con el sistema operativo sobre el cual corre. 
+'FALSO. MAS ALLÁ DE TENER ESOS COMPONENTES REQUIERE COMUNICARSE CON EL SO PARA ACCEDER A LOS DISPOSITIVOS'
+
+Las unicas restricciones posibles aplicables en el modelo relacional, son por tabla. 
+'FALSO. POR EJ EXISTEN LAS RESTRICCIONES POR COLUMNA COMO EL NOT NULL Y LOS CHECK'
+
+En la implementación de un Arbol B, todos los nodos de datos que contiene claves, se encuentran en el mismo nivel. 
+'VERDADERO'
+
+En una base de datos relacional, los indices garantizan la unicidad de claves. 
+'FALSO. ESO LO REALIZAN LAS PK PUEDE HABER INDICES CON CLAVES DUPLICADAS'
+
+A veces una Primary Key en una dentrode una Base de datos Relacional puede permitir valores repetidos. 
+'FALSO'
+
+Un grafo es biunivoco cuando tiene un solo predecesor y un solo sucesor . 
+'VERDADERO'
+
+Si un arbol binario esta completo y balanceado todas las hojas estan en el mismo nivel. 
+'FALSO. PUEDE QUE NO TIENE QUE ESTAR PERFECTAMENTE BALANCEADO Y NO SOLO BALANCEADO.'
+
+Las tecnicas más comunes utilizadas en datamining son las redes neuronales, los arboles de decision y las reglas de inducción. 
+'VERDADERO , SON LAS TECNICAS QUE SE UTILIZAN'
+
+Si en un arbol el subarbol derecho e izquierdo tienen la misma profundidad y la misma cantidad de elementos,entonces está perfectamente balanceado. 
+'FALSO, TIENE QUE OCURRIR EN TODOS LOS NIVELES'
+
+Cuando un grafo no es unívoco, debe ser categorizado como un grafo irrestricto.
+'VERDADERO. DADO QUE PERMITE CUALQUIER TIPO DE RELACIONES'
+
+En SQL, una subconsulta en el SELECT siempre debe retornar una fila y una columna. 
+'VERDADERO'
+
+El comando CHECK es una restricción al modelo . 
+'VERDADERO'
 
 El heap es un arbol n-ario el cual debe cumplir la norma de que el sea mayor que sus
 hijos en todos los niveles
@@ -84,11 +142,159 @@ Una subconsulta en el HAVING, siempre debe retornar una fila y una columna
 La ejecucion sin filas de resultado de una query dentro de un trigger genera la 
 cancelacion de la transaccion
 'Falso'
+
+El barrido de pre orden se puede hacer en todo tipo de arboles pero el simetrico 
+es solo para arboles binarios
+'Verdadero'
+
+Todo grafo de grado 2 es un árbol binario 
+'Verdadero'
+
+Un vector se puede utilizar para representar cualquier grafo restricto
+'Verdadero'
+
+Una tabla sin Primary Key no puede tener una Foreign Key 
+'Falso'
+
+Un Data Marts es un Datawarehouse afectado a un Departamento o sector de la empresa
+'Verdadero'
+
+
+
+
+
+
 __________________________________________________________________________________
 #desarrollables
 
+'Cual es el objetivo de los grafos?'
+Los grafos permiten modelizar matematicamente relaciones. En la computación se utiliza para modelar estructuras de datos
+no solo estructuras de datos 
+
 'Que se entiende por grafo conexo?':
 grafo que para cualquier par de vertices existira un camino que los conecte entre si 
+
+'Qué es y cuál es la diferencia entre paso y camino?'
+El paso es de un vertice  a otro mientras que el.
+Un camino simple es aquel que no repite vertices en su camino.
+Paso/camino: hay paso entre el nodo x e y si se puede llegar de x a y. Un nodo siempre tiene paso a sí mismo.
+Paso simple: un paso es simple si se pasa por todos nodos distintos
+
+'Qué beneficios brinda la aplicación de la normalización a diseño de un modelo de base de datos?'
+La capacidad de normalizar datos para evitar o reducir anomalías de datos, redundancia de datos 
+y duplicaciones de datos, al tiempo que se mejora la integridad de los datos, la han convertido en 
+una parte importante del conjunto de herramientas del desarrollador de bases de datos durante muchos años. 
+Ha sido una de las características del modelo de datos relacional.
+
+'Describa la busqueda de una clave unica en un arbol B.'
+Localizar una clave en un B-árbol es una operación simple pues consiste en situarse en el nodo raíz 
+del árbol,si la clave se encuentra ahí hemos terminado y si no es así seleccionamos de entre los hijos 
+el que se encuentra entre dos valores de clave que son menor y mayor que la buscada respectivamente y repetimos el 
+proceso hasta que la encontremos.En caso de que se llegue a una hoja y no podamos proseguir la búsqueda la clave no se encuentra en el árbol.
+En definitiva,los pasos a seguir son los siguientes:
+
+Seleccionar como nodo actual la raíz del árbol.
+
+Comprobar si la clave se encuentra en el nodo actual:
+Si la clave está, fin.
+Si la clave no está:
+Si estamos en una hoja,no se encuentra la clave.Fin.
+Si no estamos en una hoja,hacer nodo actual igual al hijo que corresponde según el valor de la clave a buscar y 
+los valores de las claves del nodo actual(i buscamos la clave K en un nodo con n claves:
+el hijo izquierdo si K<K1,el hijo derecho si K>Kn y el hijo i-ésimo si Ki<K<Ki+1)y volver al segundo paso.
+
+'Desarrolle cual es la importancia de la selección del pivote en el metodo Quicksort en funcion de los diferentes conjuntos de datos a ordenar.'
+De ahí marca el punto de partida para ordenar la tabla.
+Tomar un elemento cualquiera como pivote tiene la ventaja de no requerir ningún cálculo adicional,
+lo cual lo hace bastante rápido. Sin embargo, esta elección «a ciegas» siempre provoca que el algoritmo tenga un orden de 
+O(n²) para ciertas permutaciones de los elementos en la lista.
+
+'Defina el concepto de transación  en un Sistema de Base de Datos'
+Una transacción es un conjunto de operaciones sql que se ejecutan como un único bloque, 
+si falla una operación entonces fallan todas, si una transacción tiene éxito, todas las 
+modificaciones de los datos realizadas durante la transacción se confirman y se convierten en 
+una parte permanente de la base de datos en cambio sí una transacción encuentra errores y debe cancelarse, 
+se borran todas las modificaciones de los datos.
+
+'En qué difieren las Bases de Datos Multidimensionales con las relaciones. Ventajas y desventajas.'
+'Describir la arquitectura ANSI Sparc'
+Modelo ANSI/SPARC
+Nivel externo o VISTAS: percepción de los usuarios respecto de la DB.
+Nivel conceptual o LÓGICO: representa de forma entendible la información contenida en una base de datos Se define mediante un esquema conceptual que se escribe en DDL.
+Nivel interno o Físico: cómo se almacenan los datos en disco, representación a bajo nivel de toda la base de datos.
+------------------------
+Transformación externa/conceptual:
+Dada una determinada vista externa, esta transformación define la correspondencia entre dicha vista externa y la vista conceptual.
+Transformación conceptual/interna
+Define la correspondencia entre la vista conceptual y la base de datos almacenada, y especifica la representación en el nivel interno de las filas y columnas del modelo conceptual.
+
+'Enumere y explique al menos tres algoritmos de clasificación u ordenamiento que conozca.'
+Quicksort
+Es un ordenamiento con intercambio de partición
+Si un elemento de un vector está ubicado de tal forma que todos los que están antes que el son menores y todos los que están después son mayores ⇒ está en su posición final cuando 
+el vector esté ordenado.
+El algoritmo usa dos punteros: DOWN y UP
+Y un flag que indica cuál puntero se venía decrementando/incrementando.
+Se puede definir como un procedimiento recursivo.
+Tiempo de ordenamiento de n elemento en el tiempo proporcional de :  n* log(n)
+
+HeapSort
+Objetivo → dado un conjunto de claves ingresadas en forma aleatoria, se busca ordenar el conjunto minimizando el tiempo de búsqueda
+Este algoritmo consiste en almacenar todos los elementos del vector a ordenar en un 
+montículo (heap), y luego extraer el nodo que queda como nodo raíz del montículo (cima) en sucesivas 
+iteraciones obteniendo el conjunto ordenado. Basa su funcionamiento en una propiedad de los 
+montículos, por la cual, la cima contiene siempre el menor elemento (o el mayor, según se haya 
+	definido el montículo) de todos los almacenados en él.
+
+MergeSort
+El método MergeSort es un algoritmo de ordenación recursivo con un número de comparaciones entre elementos del array mínimo.
+Su funcionamiento es similar al Quicksort, y está basado en la técnica divide y vencerás.
+De forma resumida el funcionamiento del método MergeSort es el siguiente:
+- Si la longitud del array es menor o igual a 1 entonces ya está ordenado.
+- El array a ordenar se divide en dos mitades de tamaño similar.
+- Cada mitad se ordena de forma recursiva aplicando el método MergeSort.
+- A continuación las dos mitades ya ordenadas se mezclan formando una secuencia ordenada.
+
+'Describa el barrido simétrico o in orden de un arbol binario, ejemplifique.'
+Entreorden o simétrico:
+Visitar el subárbol izquierdo
+Informar la raíz
+Visitar el subárbol derecho
+
+'Describa de forma clara y concisa los terminos Datamining, Datawarehouse y OLAP y cómo se relacionan entre sí.'
+'Desarrollarel concepto de JOIN, enumere y explique cada uno de los tipos. Ejemplifique'
+INNER JOIN solo muestra las filas  que coincidan, 
+OUTER JOIN  mostrara todas las filas de la tabla dominante matcheen o no con los datos de la otra tabla
+Puede ser left, rigth o full
+
+'Que entiende por grafo conexo'
+Grafo conexo: un grafo se considera conexo si todo par de vértices está conectado por un camino, o sea, 
+si para cualquiera par de vértices existe al menos un camino posible entre ellos, o dicho de otra forma que existe 
+al menos una conexión entre todos los nodos que conforman el grafo, sea esta directa (a través de un arco entre ambos) 
+o indirecta (a través de más de un arco entre ambos).
+
+'Describir el nivel de aislamiento repeat able read y el concepto de lectura repetible '
+Repeatable read:
+Lockea en los selects de todos los registros consultados mientras dure la transacción.
+Pueden aparecer lecturas fantasmas.
+Y si tiene lectura repetible.
+
+'Mencionar que funcionalidades se pueden usar en un stored procedures y que no se pueden hacer en una función.'
+En una funcion no se pueden invocar procedimientos
+Dentro de una funcion se puede llamar a otra funcion
+Se pueden usar funciones dentro de un stored procedure
+
+'Enumere una forma de implementación estáticos sobre grafos y describalo.'
+Matriz de adyacencia o incidencia
+Matriz de Adyacencia
+Dado un grafo G = (V, A) con n vértices {V1, ..., Vn} su matriz de adyacencia
+es la matriz de orden nxn, A(G)=(Aij) donde Aij es el número de aristas que unen los
+vértices Vi y Vj.
+Matriz de incidencia : Dado un grafo simple G = (V, A) con n vértices V = {V1, ..., Vn} y m = aristas A
+= {A1, ..., Am}, su matriz de incidencia es la matriz de orden nxm, B(G)=(bij), donde
+bij=1 si Vi es incidente con Aj y bij=0 en caso contrario.
+
+
 
 'En que difieren las DB multidimensionales con las relacionales: ventajas y desventajas'
 la principal diferencia que tienen las bases de datos multidimensionales frente a las 
@@ -124,6 +330,35 @@ se considerara que ambos grupos estan ordenados y lo unico que se hara es el "me
 entre ambas partes. se van ordenando y fusionando ambas subsecuencias hasta obtener dos 
 conjuntos ordenados.
 Es entonces cuando se va a hacer un ultimo merge para que quede el conjunto completo ordenado.
+
+'Explique el objetivo de los índices y sus características.'
+Los índices son estructuras opcionales asociadas a una tabla.
+La función de los índices es la de permitir un acceso más rápido a los datos de una tabla, 
+se pueden crear distintos tipos de índices sobre uno o más campos.
+Los índices son lógica y físicamente independientes de los datos en la tabla asociada. Se 
+puede crear o borrar un índice en cualquier momento sin afectar a las tablas base o a otros índices.
+
+TIPOS DE INDICES
+Btree Index
+Estructura de índice estándar y más utilizada.
+Btree Cluster Index
+Este tipo de índice provoca al momento de su creación que físicamente los datos de la tabla sean ordenados por el mismo. 
+(Informix / SQLServer / DB2)
+Bitmap Index (Oracle)
+Son utilizados para pocas claves con muchas repeticiones
+Cada bit en el Bitmap corresponde a una fila en particular.
+Si el bit esta en on significa que la fila con el correspondiente rowid tiene el valor de la clave.
+Hash Index (MySql)
+Están implementados en tablas de hash y se basan en otros indices Btree existentes para una tabla. Si una tabla entra 
+integramente en memoria, la manera más rápida de ejecutar consultas sobre ella es usando un hash index.
+
+Functional Index / Function based Index
+Son indices cuya clave deriva del resultado de una función.
+En general las funiciones deben ser funciones definidas por un usuario.
+Reverse Key Index (Oracle) 
+Invierte los bytes de la clave a indexar. Esto sirve para los índices cuyas claves son una serie constante con por ej. 
+Crecimiento ascendente. para que las inserciones se distribuyan por todas las hojas del árbol de índice.
+
 
 'Describa la busqueda de una clave unica en un arbol B'
 si necesitamos buscar un item X en un arbol B, debemos comenzar por la raiz.. 
@@ -256,6 +491,66 @@ códigos más cortos a los caracteres que aparecen más a menudo se consigue una
 Esta compresión es mayor cuando la variedad de caracteres diferentes que aparecen es menor. Ej: si el texto se compone 
 únicamente de números o mayúsculas, se conseguirá una compresión mayor.
 
+'Detalle las estructuras del algoritmo de Huffman'
+El algoritmo de Hffman se usa para la compresion o encriptacion de datos mediante el estudio de la frecuencia
+de aparicion de caracteres. Se basa en el uso de un arbol binario donde las hojas representan los simbolos del conjunto de 
+entrada.
+Para conseguir el codido de huffman asociado a cada simbolo unicamente hay que seguir las aristas que unen la raiz con la hoja 
+determinada. 
+Estructuras utilizadas
+Tabla de huffman: Es una matriz compuesta por 5 columnas (estado, carácter, frecuencia, código, dirección en el árbol) y una fila por 
+cada carácter distinto.
+Un árbol binario completo compuesto por el carácter, la frecuencia, punteros a dos hijos y un puntero al padre.
+Una pila.
+
+'Detallar el objeto BD Constraint y su relacion con integridad'
+Integridad de Entidad
+La integridad de entidades es usada para asegurar que los datos pertenecientes a 
+una misma tabla tienen una única manera de identificarse, es decir que cada fila de cada tabla tenga una primary key capaz de identificar 
+unívocamente una fila y esa no puede ser nula
+PRIMARY KEY CONSTRAINT: Puede estar compuesta por una o más columnas, y deberá representar unívocamente a cada fila de la tabla. 
+No debe permitir valores nulos (depende del motor de base de datos).
+Integridad Referencial
+La integridad referencial es usada para asegurar la coherencia entre datos de dos tablas.
+FOREIGN KEY CONSTRAINT:Puede estar compuesta por una o más columnas, y estará referenciando a la PRIMARY KEY de otra tabla.
+Los constraints referenciales permiten a los usuarios especificar claves primarias y foráneas para asegurar una relación PADRE-HIJO 
+(MAESTRO-DETALLE).
+
+Integridad Semántica
+La integridad semántica es la que nos asegura que los datos que vamos a almacenar tengan una apropiada configuración y que 
+respeten las restricciones 
+definidas sobre los dominios o sobre los atributos.
+•DATA TYPE 
+•DEFAULT
+•UNIQUE
+•NOT NULL
+•CHECK
+
+Integridad Semántica
+DATA TYPE: Este define el tipo de valor que se puede almacenar en una columna. 
+DEFAULT CONSTRAINT: Es el valor insertado en una columna cuando al insertar un registro ningún valor fue especificado para dicha columna. El valor default por default es el NULL. 
+Se aplica a columnas no listadas en una sentencia INSERT.
+El valor por default puede ser un valor literal o una función SQL (USER, TODAY, etc.)
+Aplicado sólo durante un INSERT (NO UPDATE).
+UNIQUE CONSTRAINT: Especifica sobre una o más columnas que la inserción o actualización de una fila contiene un valor único en esa columna o conjunto de columnas.
+NOT NULL CONSTRAINT:Asegura que una columna contenga un valor durante una operación de INSERT o UPDATE. Se considera el NULL como la ausencia de valor.
+
+CHECK CONSTRAINT: Especifica condiciones para la inserción o modificación en una columna. Cada fila insertada en una tabla debe cumplir con dichas condiciones. 
+Actúa tanto en el INSERT, como en el UPDATE.
+Es una expresión que devuelve un valor booleano de TRUE o FALSE.
+Son aplicados para cada fila que es INSERTADA o MODIFICADA.
+Todas las columnas a las que referencia deben ser de la misma tabla (la corriente). 
+No puede contener subconsultas, secuencias, funciones (de fecha, usuario) ni pseudocolumnas.
+Todas las filas existentes en una tabla deben pasar un nuevo constraint creado para dicha tabla. En el caso de que alguna de las filas no cumpla, no se podrá crear dicho constraint o se creará en estado deshabilitado.
+
+
+'Que es una tabla temporal'
+Son tablas creadas cuyos datos son de existencia temporal.
+No son registradas en las tablas del diccionario de datos(se refiere a la lista de tablas que tengo).
+No es posible alterar tablas temporarias. Si eliminarlas y crear los índices temporales que necesite una aplicación.
+Las actualizaciones a una tabla temporal podrían no generar ningún log transaccional si así se configurara.
+
+
 'Explique las Reglas de Integridad según el Modelo Relacional'
 Regla de integridad de la entidad: ninguno de los atributos que componen la clave primaria puede ser nulo. 
 Regla de la integridad referencial: si en una relación hay una clave foránea, sus valores deben coincidir con los valores de la clave primaria.
@@ -285,8 +580,19 @@ Desventajas: el principal problema es cuando la función hash devuelve un valor 
 Cuanto más datos, más colisiones. No es bueno para búsquedas secuenciales.
 Árbol B: la estructura de Árbol B parte del concepto de árboles n-arios de búsqueda. Está pensado para disminuir la cantidad de accesos 
 a disco y la posibilidad de mantener en memoria la parte que se está utilizando y el resto conservarlo en disco. 	
-Ventajas: se utiliza para grandes volúmenes de datos y es mejor que 	hash para archivos secuenciales. 
+Ventajas: se utiliza para grandes volúmenes de datos y es mejor que hash para archivos secuenciales. 
 Desventajas: es más lento que Hashing para la creación de índices, 	dado que es necesario crear toda la estructura en memoria.	 
+
+'Explique el acceso a datos por hashing into buckets, mencionar de que modo trata'
+'las colisiones'
+Cuando dos o mas calves intentan asignarse a una misma direccion en la tabla hash, cuando 
+dos clases se direccionan a la misma se produce una colision.
+cuando hay colisiones se requiere un proceso adicional para encontrar una posicion disponible 
+para la clave:
+las cuales son:
+	• direccionamiento abierto: consiste en poner en la siguiente posicion vacioa 
+	• direccionamiento cerrado: no hay problema con que se repita la misma direccion.
+
 
 'Explicar objetos de BD que nos permiten la integridad referencial, reglas de integridad de entidad y la integridad semántica.'
 Integridad semántica = Consistencia.	 	
