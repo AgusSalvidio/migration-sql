@@ -928,78 +928,749 @@ El servidor realiza el procesamiento de datos y aplica las reglas de negocio est
 Clustering: es la forma de agrupar la información. Hay dos formas, intra-file clustering (todas las tablas conviven con sus elementos) 
 e inter-file clustering (se guarda cada objeto con sus relaciones).
 
-'A la hora de elegir un Motor de Bases de Datos determinado, que características tendría que analizar para su elección?'
-En que consiste un Plan de Consulta, cual es su utilización y la ventaja de su implementación.
-Indique concepto, tipos, funcionalidades y cual es la mayor ventaja de los triggers.
-Que se entiende por Multicubo y Hypercubo y cual es la utilización y diferencias entre ambos.
-Cual es el concepto de Data Marts?  Para que se utilizan?.  Cual es la diferencia entre un Data Marts y un Datawarehouse?
-Los data marts se ajustan a las necesidades que tiene una parte específica de un negocio, más que a las de toda una empresa. Optimizan la
-distribución de información útil para la toma de decisiones y se enfocan al manejo de datos resumidos o de muestras. No necesitan ser administrados centralmente por el departamento de sistemas de una organización, sino que pueden estar a cargo de un grupo específico dentro del área de la empresa que los utilice.
-En ocasiones, los proyectos que comienzan como data warehouses evolucionan a data marts. Cuando las organizaciones acumulan grandes
-cantidades de datos históricos para el apoyo de decisiones, que rara vez o nunca usan, pueden reducir la información guardada y convertir su data
-warehouse en un data mart mejor enfocado.
-Los sistemas que extraen y almacen datos de diversas fuentes para la toma de decisiones, se denominaban Data Warehouses. En fechas recientes se ha hecho una distinción entre los grandes sistemas para almacenar datos (data warehouses) y los sistemas más pequeños (data marts).
-En que consisten, para que se utilizan y como pueden implementarse las Tecnologías OLAP.  Ejemplifique.
-Responde con rapidez a las consultas, de modo que el proceso de
-análisis no se interrumpe y la información no se desactualiza.
-_ Tiene un motor de depósito de datos multidimensional, que almacena los
-datos en arreglos. Esos arreglos son una representación lógica de las
-dimensiones empresariales.
-La tecnología OLAP se aplica en muchas áreas funcionales de una empresa,
-tales como producción, ventas y análisis de rentabilidad de la comercialización,
-mezcla de manufacturas y análisis de logística; consolidaciones financieras,
-presupuestos y pronósticos, planeación de impuestos y contabilidad de costos.
-OLAP surge como un proceso para ser usado en el análisis de ventas y
-mercadotecnia, para elaborar reportes administrativos y consolidaciones, para
-presupuestación y planeación, para análisis de rentabilidad, reportes de calidad
-y otras aplicaciones que requieren una visión flexible, de arriba a abajo, del
-negocio. OLAP provee de reportes sumarios que los ejecutivos requieren para
-tomar decisiones, así como la facilidad de elaborar cálculos complejos,
-enfoques a detalles operativos y consultas no programadas. OLAP se alimenta
-principalmente de los sistemas transaccionales y como tales, debe considerar
-una eficiente administración de la base de datos y proveer un nivel adecuado
-de seguridad.
+'Anexo Preguntas o Conceptos de Final'
 
-1.      Es correcto decir que tanto las claves PK como las claves FK son
- Check Constraints?
-Si
-2.      Se podría decir que las Check Constraints son restricciones al
- modelo físico?
-Si
-2. Que diferencias existen entre decir Constraints y Check Constraints desde
- el punto de vista conceptual?
-Yo tengo entendido que las Check Constraints son un subconjunto de las
- Constraints, pero no estoy muy seguro que sea correcto.
-Es esto
+'FUNCIONALIDADES Y CARACTERISTICAS DE UN DBMS:'
+- Concurrencia: permite el acceso simultáneo de muchas usuarios/procesos.
+- Atomicidad: asegura que un conjunto de operaciones se ejecuta todo o falla en su conjunto.
+- Consistencia: asegura que la integridad de los datos se mantiene antes y después de realizar una operación.
+- Backup y Restore: provee herramientas para realizarlos.
+- Gestión de almacenamiento: independiza al usuario de los detalles de bajo nivel de cómo se almacenan los datos. (tratamiento con FS)
+- Aislamiento: usuario se abstrae de la implementación física del modelo.
+- Facilidad de consultas.
+- Transaccionalidad.
+- Abstracción.
+- Procesamiento distribuido: las diferentes capas o sistemas de un DBMS interactúan entre sí para llevar a cabo los objetivos generales de un DBMS.
 
-1. Si tuviera que elegir un método de creación de índices, entre Hashing y
- Árbol B, cuando usaría cada uno de ellos y por qué?
-Que parámetros tendría que tener en cuenta para decidirme por algún método
- en especial? Tengo entendido que el volumen de los datos influye en la
- elección de los métodos pero me gustaría saber la respuesta correcta a esta
- pregunta.
-Influye el volumen de los datos, los tipos de clave, dado que Hashing genera
- redundancia y el tipo de acceso, dado que Hashing está preparado para un
- acceso directo y no secuencial
-2. Determinar que índices implementaría sobre las tablas intervinientes en
- la siguiente consulta, sabiendo que no existen claves implementadas
- actualmente en el modelo, especificar por que:
-SELECT usr_nombre, usr_clave, usr_apellido
-FROM  usuario, rol
-WHERE ( user_nombre='usuario001'  OR usr_apellido LIKE '%Gonzalez' )
-AND usuario.usr_id = rol.usr_id AND rol_tipo=lower('Administrador');
-Cuando se está hablando de índices, en este caso, sería erróneo contestar
- que implementaría una clave PK y una clave FK, la clave PK asociada a la
- columna usr_id de la tabla usuario y la clave FK asociada a la columna
- usr_id de la tabla rol?
-Pregunto esto, ya que al implementar estas claves PK se generan índices para
- esas columnas.
-Con respecto a la justificación:
-Al hacer el join usuario.usr_id = rol.usr_id en el where y teniendo en
- cuenta que ambas columnas son PK (tienen un indice asociado), el DBMS
- resuelve la query de una manera mucho mas rápida y eficiente que sin
- definirlas como PK.
-Seria correcta esta respuesta? Haría falta agregar algo mas?
-Es correcto, pero además se podría crear un índice por el campo user_nombre
- para que la busqueda sea más rápida, no por apellido, dado que el LIKE anula
- la búsqueda por índice,
+'QUE DEBE CUMPLIR UN MOTOR DE BD'
+- Relación costo/beneficio.
+- Volúmenes de datos a manejar.
+- Tipos de bloqueos.
+- Concurrencia.
+- Si el sistema es o no orientado a objetos.
+- Capacidad del equipo de trabajo.
+- Plataforma (Hardware y SO)
+
+'Características de los DSS Queries (DataWarehouse) ­> OLAP:'
+- Muchas filas son leídas y el resultado no esta en una transacción
+- Los datos son leídos secuencialmente
+- SQL complejos son ejecutados
+- Grandes archivos temporarios son creados
+- El tiempo de respuesta es medido en horas y minutos
+- Hay relativamente poca concurrencia de queries
+
+'CARACTERISTICAS DEL Ambiente OLTP: On­Line Transaction Processing'
+- Relativamente pocas filas leídas
+- Alta frecuencia de transacciones
+- Acceso a los datos a través de índices
+- Simple Operaciones SQL
+- Respuesta de scan medida en segundos
+- Muchos queries concurrentes
+
+'Existen 3 niveles de Seguridad:'
+ a) Base de datos
+ b) Tabla
+ c) Columna (depende del motor de bd)
+ 
+'PLAN DE CONSULTA:' Consiste en que el SGBD tiene armado un plan de cómo va a acceder a
+los datos, esto hace que el acceso sea más rápido. Los SP, Vistas y Funciones implementan un plan
+de ejecución, es por esto que son más veloces que un query normal.
+­El optimizador de consultas es el componente del sistema de gestión de base de ­datos que
+intenta determinar la forma más eficiente de ejecutar una consulta SQL.
+­Se decide cuál de los posibles planes de ejecución de una consulta dada es el más eficiente.
+­Los optimizadores basados en costos asignan un costo (operaciones de E/S requeridas, CPU,
+etc.) a cada uno de esos planes y se elige el que tiene menor costo.
+
+'Por qué se establece que las Reglas del Negocio deben estar en el Motor de Base de Datos y no
+en la aplicación cliente?'
+- Reglas de negocio: cada aplicación debe reflejar las restricciones que existen en el negocio
+dado, de modo que nunca sea posible realizar acciones no válidas.
+- La información puede ser manipulada por muchos programas distintos que podrán variar de
+acuerdo a los departamentos de la organización, los cuales tendrán distintas visiones y
+necesidades pero que en cualquier caso, siempre deberán respetar las reglas de negocio.
+- Es por lo anterior expuesto que las reglas del negocio deben estar en el motor de base de
+datos.
+
+'Describa los componentes básicos de un DBMS. Teniendo en cuenta la administración de
+datos, la interfaz con el usuario y el procesamiento cliente­servidor.'
+- Dos lenguajes: DML y DDL.
+- 3 capas: externa (usuario), lógica (conceptual) e interna (física).
+- Disk manager (recibe peticiones del file manager y las envía al SO), file manager (decide que página contiene el registro deseado y la solicita el disk manager) y user manager (permite la interacción con el usuario).
+- Arquitectura cliente­servidor: las aplicaciones corren en el cliente y generan solicitudes para y reciben respuestas del servidor. El servidor realiza el procesamiento de datos y aplica las
+reglas de negocio establecidas.
+- Clustering: es la forma de agrupar la información. Hay dos formas, intra­file clustering (todas las tablas conviven con sus elementos) e inter­file clustering (se guarda cada objeto con sus relaciones).
+
+'¿Qué beneficios brinda la aplicación de la normalización al diseño de un modelo de base de datos?'
+- Evitar la redundanciade los datos.
+- Evitar problemas de actualización de los datos en las tablas.
+- Proteger la integridad de los datos.
+
+'¿Qué entiende por diccionario de datos, catálogo de datos o metadata?'
+✔ Para representar una base de datos relacional, necesitamos almacenar no sólo las relaciones mismas, sino también una cantidad de información adicional acerca de las relaciones.
+- El conjunto de tal información se llama diccionario de datos o metainformación.
+- El diccionario de datos debe contener información como: nombre de las relaciones en la base de datos; nombre de los atributos de cada relación; dominio de cada atributo; tamaño
+de cada relación; método de almacenamiento de cada relación; claves y otras restricciones de seguridad; nombres y definiciones de vistas.
+- Además debe contener información sobre los usuarios de la base de datos y los poderes que éstos tienen: nombre de los usuarios; costo del uso efectuado por cada usuario; nivel de
+privilegio de cada usuario.
+
+-----------------------------------------------------------------
+'a)Con un constraint check, se puede definir un rango de fecha preestablecido'
+VERDADERO - CHECK CONSTRAINT → especifica condiciones al hacer un INSERT o UPDATE en una columna. Cada fila insertada o actualizada debe cumplir con dichas condiciones.
+
+'b)Si un arbol binario de busqueda tiene N niveles, la cantidad maxima de lecturas sobre el mismo para encontrar una clave es N-1'
+FALSO - en la busqueda de un elemento el maximo de niveles a recorrer es hasta el nivel de la hoja mas baja en el nivel N. Por lo cual debo hacer comparaciones hasta N veces y encontrar el valor (no N-1).
+--------------------------------------------------------------------------
+'a)En el algoritmo de Huffman, la cantidad de nodos es la siguiente: (total de hojas * 2)-1.'
+VERDADERO
+
+'b)Si una columna posee la constraint UNIQUE, entonces una sola fila como máximo puede contener NULL en dicha columna'
+VERDADERO - cada valor debe ser distinto en la fila
+--------------------------------------------------------------------------
+'a)En una db Relacional las vistas pueden ser utilizadas para brindar consistencia de datos'
+FALSO - Las transacciones son utilizadas para brindar consistencia de datos.
+
+'b)En huffman si un caracter posee el codigo 0011, entonces con seguridad existe al menos otro cuyo codigo comienza con 001'
+VERDADERO
+--------------------------------------------------------------------------
+'a)Un constraint de tipo CHECK siempre puede ser reemplazado por un trigger'
+ VERDADERO
+'b)Los Arboles B garantizan un numero de niveles menos que otro arboles' 
+FALSO - Los árboles-B no garantizan menos niveles. Los niveles dependen de cosas como la cantidad de datos, el orden, el grado de completitud de un nodo, …
+--------------------------------------------------------------------------
+'a)Una columna afectada por una constraint UNIQUE no puede almacenar valores repetidos ni NULL'
+FALSO - Puede almacenar un unico NULL
+'b)Hashing es mas performante que el Arbol B en la busqueda de una clave unica en particular existente.'
+VERDADERO - En el caso más general, Hashing es más performante que Árbol B: Hashing,
+a partir de una clave, devuelve un índice de una tabla con la dirección de memoria del
+registro con dicha clave, con el riesgo de que ocurran colisiones, por eso es más
+performante que Árbol B en búsqueda por clave. De hecho, Árbol B es mejor para
+búsquedas por rango. Sin embargo, siempre hay que tener en cuenta la distribución de
+datos y como esté configurada la función de hash: si una búsqueda por hash produce
+muchas colisiones para una misma clave, es probable que un Árbol B sea más performante
+que Hashing.
+
+TAMBIEN PUEDE SER FALSO - Si tenés que hacer rehashing 10000 veces para acceder
+directo a una clave cuando podías agarrar la dirección de la primer hoja del árbol B, bueno,
+ahí sí es más performante Árbol B
+--------------------------------------------------------------------------
+'a)Es posible implementar el concepto de ABB (Arbol Binario de Busqueda) en un Array'
+VERDADERO
+'b)Todo grafo de grado 2 es un arbol binario'
+FALSO. De ser reflexivo ya el grafo no seria arbol.
+--------------------------------------------------------------------------
+'a)Si se desea que no se puedan eliminar registros de una tabla de auditoria, una opcion es crear un trigger que lo impida.'
+VERDADERO
+'b)La cantidad de nodos de un arbol de expresion siempre es par'
+FALSO
+--------------------------------------------------------------------------
+'a)El Arbol B+ es un arbol Principal Derecho Balanceado'
+VERDADERO - Es balanceado y el Arbol Principal Derecho todos los nodos noprincipales tienen un unico padre y el nodo principal es el minimal del arbol (llamado raiz) y es unico.
+'b)Para entornos transaccionales de alta concurrencia es conveniente setear el Isolation Level en Repeatable Read'
+FALSO - Dado que tiene un mayor alcance de lockeo de los registros, se verá afectada la performance. Es recomendable un nivel mas permisivo como read commited o read uncommited
+--------------------------------------------------------------------------
+'a) En caso de no querer eliminar registros de una tabla de audtoría, podría definirse un trigger para que lo impida.'
+VERDADERO
+'b) La cantidad de nodos de los árboles de expresión es siempre par.'
+FALSO - Contraejemplo: {(x, 1), (y, 2)}.
+--------------------------------------------------------------------------
+'b) El algoritmo de Huffman obtiene los códigos comprimidos parseando un árbol binario balanceado'
+FALSO El árbol binario no es necesariamente balanceado. Tomen como ejemplo el árbol que
+surge de comprimir el texto "Tomemos como ejemplo esta frase. " con Huffman.
+--------------------------------------------------------------------------
+'a)En el arbol de Huffman la cantidad total de nodos es la siguiente:(total de hojas *2)-1'
+VERDADERO
+'b)La implementacion de la cantidad de entradas para claves en una tabla de hash es dinamica.'
+FALSO - La implementación de las claves de hash pueden ser dinámicas o
+estáticas.
+--------------------------------------------------------------------------
+'a)Si un arbol N-ario tiene un total de 2 niveles, entonces la profundidad maxima que alcanza un nodo en la transformada de Knuth es N'
+VERDADERO siempre que N>2
+'b)El nivel de aislamiento repeatable read acepta lecturas fantasmas'
+VERDADERO
+--------------------------------------------------------------------------
+'a)El algoritmo de Huffman solo es aplicable a archivos de texto por la forma en que trabajan las repeticiones.'
+FALSO
+'b)Las foreign key son la unica forma que tienen las bases de datos para implementar la integridad relacional entre las tablas de un modelo.'
+FALSO
+--------------------------------------------------------------------------
+'a)Si una funcion de hash no posee una buena dispersion, se van a producir muchas colisiones'
+VERDADERO
+'b)Nunca es posible ejecutar la operacion de insert sobre un vista'
+FALSO - Se puede hacer un INSERT sobre una vista
+--------------------------------------------------------------------------2
+'a). El árbol de expresión siempre está balanceado en su raíz.'
+FALSO - Contraejemplo: a + (b + c) * d.
+'b)El Heapsort tiene peor rendimiento si los datos ya vienen ordenados.'
+FALSO - El rendimiento del Heapsort es siempre constante y es O(n log n).
+--------------------------------------------------------------------------
+'a)Un arbol binario de busqueda siempre es un arbol completo'
+FALSO
+'b)En un trigger de update las tablas inserted y deleted tienen siempre la misma cantidad de registros'
+VERDADERO
+--------------------------------------------------------------------------
+'a)El tiempo de ejecucion del Algoritmo de clasificacion HEAPSORT solo depende de la cantidad de elementos a ordenar.'
+VERDADERO
+'b)Un arbol de grado mayor a dos no puede ser representado mediante una representacion computacional estatica.'
+FALSO
+--------------------------------------------------------------------------
+'a)Siempre es recomendable que toda la tabla indexada por ARBOL B+ tenga load factor.'
+VERDADERO
+Manejo del Load Factor
+FILLFACTOR– Porcentaje de cada página del índice a ser dejado como espacio
+libre en su creación. Por ej. Si el FILLFACTOR=20, en la creación del
+índice se ocupará hasta el 80% de cada nodo.
+CREATE UNIQUE INDEX ix1_ordenes ON ordenes(N_orden) WITH FILLFACTOR = 20
+'b)Un nivel de aislamiento SERIALIZABLE es recomendable para no leer datos sucios de una tabla.'
+VERDADERO
+--------------------------------------------------------------------------
+'a)Un sistema de Data Warehousing no permite la integracion de bases de datos heterogeneas (relacionales, documentales, geograficas, archivos, etc)'
+FALSO
+'b)Un trigger unicamente puede modificar datos de la tabla a la que pertenece'
+FALSO
+--------------------------------------------------------------------------
+'a)La reexpresion de caracteres al aplicar huffman implica la disminucion de 8bits para la expresion de todos los caracteres.'
+FALSO
+'b)La ejecucion sin filas de resultado de una query dentro de un trigger genera la cancelacion de la transaccion.'
+FALSO
+--------------------------------------------------------------------------
+'a)Los niveles de aislamiento permiten que no se generen deadlocks.'
+FALSO - Repeatable read puede generar deadlocks.
+'b)En SQL Server una tabla puede tener mas de un trigger INSTEAD OF INSERT'
+FALSO
+--------------------------------------------------------------------------
+'a) El algoritmo de Huffman siempre se basa en árboles completos' 
+FALSO. Puede ser que tengas un nodo a la derecha y 200 a la izquierda; todo depende de la frecuencia de los caracteres
+'b) El algoritmo QuickSort es siempre más rápido que Heap Sort'
+FALSO. QuickSort iba de O(n log n) a O(n^2) (creo; ya no me acuerdo),
+mientras que HeapSort siempre tenía O(n log n)
+--------------------------------------------------------------------------
+'a)Si un arbol B tiene N claves entonces el grado es N+1'
+FALSO
+'b)Una sub consulta ubicada en el where siempre debe retornar al menos una fila'
+FALSO
+--------------------------------------------------------------------------
+'a)Es posible asegurar Integridad Referencial entre dos tablas de Base de Datos Diferentes'
+VERDADERO - Trigger
+'b)La estructura de un ABB (Arbol Binario de Busqueda) es un arbol completo.'
+FALSO
+--------------------------------------------------------------------------
+'a)Si una consulta posee la constraint de unique, entonces ninguna fila acepta nulos en dicha columna.'
+FALSO. aceptara solo uno
+'b)Al aplicar un barrido simetrico sobre un ABB se obtiene el conjunto de datos ordenado.'
+VERDADERO
+--------------------------------------------------------------------------
+'a) Dada una tabla que tiene un trigger de INSERT; Si al insertar una fila sin ninguna transacción iniciada en la tabla, la acción disparada por el trigger falla, el insert de la fila no se inserta en la tabla. (Quedó
+medio chota, por eso en el final el profesor aclaró que la afirmación se refiere a que no se insertan datos en la tabla)'
+FALSO
+'b) El árbol lleno y el árbol completo son dos tipos de árboles binarios balanceados.'
+FALSO
+--------------------------------------------------------------------------
+'a)Las claves alternas, son posibles claves foraneas que pertenecen al conjunto de las claves candidatas'
+FALSO. Claves PRIMARIAS
+'b)El metodo de Hashing resuelve mas eficientemente las busquedas con rangos de claves.'
+FALSO. ARBOL B+
+--------------------------------------------------------------------------
+'a)La siguiente consulta retorna como maximo 1 fila
+SELECT distinct 1 FROM tabla1 WHERE campo1 = 1 union all SELECT distinct 1
+FROM tabla1 WHERE campo2=2'
+FALSO
+'b)La cantidad de nodos de un arbol de huffman siempre es impar.'
+VERDADERO
+--------------------------------------------------------------------------
+'a)El QuickSort es mas performante que el HeapSort, sin importar como vengan los datos (ordenados o desordenados)'
+FALSO - misma performance para ambos
+'b)Sobre un arbol n-ario con n>2 se pueden realizar los siguientes barridos (recorridos), preorden, simetrico, posorden y por niveles' 
+FALSO - Solo por niveles
+--------------------------------------------------------------------------
+'b)La implementacion de la cantidad de entradas para claves en una tabla de hash es dinamica'
+FALSO
+--------------------------------------------------------------------------
+'a)Toda consulta que utilice al menos una funcion de grupo debe ir acompañada de la clausula "group by"'
+VERDADERO
+'b)La ejecucion sin filas de resultado de una query dentro de un trigger siempre genera la cancelacion de la transaccion.'
+FALSO
+--------------------------------------------------------------------------
+'a)Si tengo un conjunto de datos tendiendo a ordenados, el algoritmo de QuickSort es el mas eficiente para su ordenamiento total.'
+FALSO.
+'b)La accion que ejecuta un trigger y el evento que lo dispara siempre se ejecutan de manera atomica'
+VERDADERO
+--------------------------------------------------------------------------
+'a)El Orden de complejidad de un ABB siempre es mejor que el Orden de complejidad del QuickSort'
+FALSO
+'b)Para comprimir en el algoritmo de Huffman, se debe leer en un ciclo cada caracter del archivo a comprimir y acceder al arbol desde la raiz para llegar a la hoja
+ que contiene el caracter. Si desciendo por un hijoizquierdo agrego un 0 como bit del codigo comprimido, si desciendo por un hijo derecho agrego un 1.'
+FALSO
+------------------------------------------------------------------------
+GRAFOS 
+
+'Para representar grafos irrestrictos son más performantes las representaciones dinámicas que las estáticas.'
+FALSO
+Los grafos irrestrictos son más performantes si se implementan en forma estática, ya que de lo contrario tendrían que estar pidiendo espacio a memoria en forma continua.
+
+'Para reducir espacio al representar un grafo siempre es más conveniente la forma dinámica que estática.'
+VERDADERO
+La forma dinámica ocupa menor cantidad de espacio que la estática, ya que la estática pide todo el espacio de entrada, sin aprovecharlo del todo.
+
+'La única estructura de datos estática capaz de representar cualquier grafo es una matriz.'
+VERDADERO
+La matriz podría ser de adyacencia o de incidencia.
+
+'Todo grafo de grado dos es binario.'
+FALSO Contraejemplo: un grafo reflexivo.
+
+'Dado el grafo G = {(E; P);E({a}), P({a; a}) se puede decir que es un árbol.'
+FALSO 
+No se puede decir que es un árbol porque es reflexivo.
+-----------------------------------------------------------------
+Árboles Árbol-B → árbol de búsqueda. AB → árbol binario.
+ABB ​→ ​árbol binario de búsqueda.
+AVL ​→ ​ABB en donde la diferencia entre las alturas de los
+subárboles de cada uno de sus nodos es, como mucho, 1.
+
+'El método de Árbol B no es aplicable a archivos con grandes volúmenes de datos.'
+FALSO
+El método de Árbol B sí es aplicable a grandes volúmenes de datos: es lo que utilizan los sistemas operativos para manejar sus sistemas de directorio y las bases de datos para manejar los índices.
+
+'En un índice de un DBMS, armado en un Árbol B, el tiempo de acceso a la información depende en parte del tamaño de la clave almacenada.'
+FALSO
+El tiempo de acceso en un árbol-B depende del orden y de la altura.
+
+'Dado el árbol {(c, a);(c, b);(c, d);(c, e)} su barrido simétrico es a, b, c, d, e.'
+FALSO
+No se puede hacer un barrido simétrico en un árbol no bi- nario.
+
+'Si un árbol está balanceado entonces está completo.'
+Verdadero si está estrictamente balanceado
+
+'Un ABB siempre es más rápido que una lista para ordenar un conjunto de valores.' 
+FALSO
+Las velocidades de ordenamiento de un ABB y de una lista dependen del algoritmo de ordenamiento y de los 
+datos.
+
+'Un AB con cuatro nodos nunca puede ser completo.'
+FALSO Contraejemplo: {(1, 2), (1, 3), (2, 4)}.
+
+'Debido a que el crecimiento de un árbol es exponencial en base al ancho del mismo, los tiempos de búsqueda en el mismo son siempre logarítmicos.'
+FALSO
+Los tiempos de búsqueda sobre un árbol dependen de cosas como su balanceo.
+
+'Un árbol de expresión siempre es completo.'
+VERDAERO
+Depende de lo que se interprete por “completo”: · Si se piensa por el lado de que todos los nodos no maximales tienen que tener el mismo grado, es completo.
+Si se piensa por el lado de que para un árbol de profun- didad h, todos los nodos hasta h-1 tienen que tener grado 2 y el nivel h se completa de izquierda
+a derecha, entonces no es completo.
+
+'Un vector es una representación computacional estática que puede almacenar un árbol.' 
+VERDADERO
+
+'En un árbol de expresión los nodos maximales siempre son los operadores.'
+FALSO
+Los nodos maximales en un árbol de expresión son operandos.
+
+'En la implementación de un Árbol B, todos los nodos de datos que contienen claves se encuentran en el mismo nivel.'
+VERDADERO
+
+'El Árbol B garantiza un número de niveles menor que otros árboles.'
+FALSO
+Los árboles-B no garantizan menos niveles. Los niveles dependen de cosas como la cantidad de datos, el orden, el grado de completitud de un nodo, …
+
+'Si un AB está completo y balanceado todas las hojas están en el mismo nivel'
+Depende de lo que se entienda por completo.Si es un árbol cuyos nodos no maximales tienen grado dos, es FALSO.
+Si es un árbol que tiene una profundidad h y que todos los nodos hasta h-1 tienen grado dos y los que están en h se colocan de izquierda a derecha, es VERDADERO.
+
+'Un árbol siempre tiene más punteros que elementos de datos.'
+FALSO 
+Un árbol implementado con un vector no tiene punteros.
+
+'Un ABB recorrido en orden simétrico (infijo) siempre devuelve un conjunto de valores ordenados.'
+VERDADERO
+Un ABB recorrido en forma infija devuelve un conjunto de valores ordenados en forma ascendente.
+
+'El árbol de expresión siempre está balanceado en su raíz.'
+FALSO Contraejemplo: a + (b + c) * d.
+
+'La cantidad de nodos en un árbol de expresión siempre es par.'
+FALSO Contraejemplo: {(x, 1), (y, 2)}.
+
+'Es posible implementar el concepto de ABB con un vector.'
+VERDADERO
+
+'Sobre un árbol n-ario con n>2, se pueden realizar los barridos pre-orden, simétrico, post-orden y por niveles.'
+FALSO En un árbol n-ario con n>2 solamente se puede realizar el barrido por niveles.
+
+'Cuando un ABB se basa en un AVL su orden de complejidad es el mejor n log2 n.'
+FALSO El orden de complejidad de un árbol AVL es O(log n).
+
+'El orden de complejidad de un ABB es similar al del Árbol B.'
+FALSO El orden de complejidad de un árbol-B es mejor al de un ABB.
+
+'Si un árbol binario de búsquedas N niveles, la cantidad de máxima de lecturas sobre el mismo para encontrar una clave es N-1'
+FALSO
+
+'El Árbol B+ es un Árbol Principal Derecho Balanceado'
+FALSO
+
+'La máxima cantidad de nodos que puede contener un árbol está acotada por el grado del mismo'
+VERDADERO
+---------------------------------------------------------------------------
+Árboles – Métodos de Clasificación
+
+'El orden de complejidad de un Árbol B siempre es mejor que el orden de complejidad del ​Quicksort​.'
+FALSO
+El orden de complejidad puede variar de acuerdo a cómo vengan ordenados los datos
+
+'El orden de complejidad del ​Quicksort ​puede variar dependiendo de cómo vengan ordenados los datos.'
+FALSO
+El orden de complejidad del Quicksort depende de la elección del pivote. En el mejor de los casos, se elige el pivote que divide a la lista en dos partes iguales. Pero 
+en el peor de los casos, se elige el pivote que divide a la lista en una gran lista y una muy pequeña.
+
+'El algoritmo ​Quicksort ​tiene un promedio un grado de complejidad O(n log n) pero en determinada circunstancia puede tener grado de complejidad O(n²) y ser el peor de todos los métodos de clasificación.'
+VERDADERO
+Si bien es cierto que en el peor de los casos su orden de complejidad es O(n​2​), no es el peor algoritmo ya que, por ejemplo, el algoritmo de la burbuja también se comporta como O(n​2​)
+
+'Si tengo un conjunto de datos tendiendo a ordenados, el algoritmo de ​Quicksort ​es el más eficiente para su ordenamiento total.'
+FALSO
+Quicksort puede llegar a ser bueno según la elección del pivote. Otro bueno podría ser Heapsort, que es in situ y con orden O(n · log n).
+
+'El algoritmo ​Quicksort ​siempre tiene el mismo orden de complejidad que el algoritmo de ​Heapsort​.'
+FALSO
+El orden de complejidad de los algoritmos depende de cómo vengan ordenados los datos. Quicksort en el peor de los casos es O(n​2​), mientras que Heapsort es O(n log n).
+
+'El ​Heapsort ​tiene peor rendimiento si los datos ya vienen ordenados.'
+FALSO
+El rendimiento del Heapsort es siempre constante y es O(n log n).
+
+'La técnica de ​hashing ​puede generar muchas lecturas secuenciales para un valor clave ​hash ​cuando hay alto grado de repetición de claves de usuario.'
+VERDADERO
+
+'La técnica de ​hashing ​abierto puede generar muchas lecturas secuenciales para un valor “clave ​hash​” cuando hay alto grado de repetición de claves de usuario.'
+SinRespuesta
+
+'La técnica de ​hashing ​no puede ser implementada para uso de caché, ya que no garantiza el acceso de alta velocidad.'
+SinRespuesta
+
+'Una tabla de ​hash ​permite desarrollar un mecanismo indexado para recuperación de claves únicas.'
+VERDADERO
+También se permite para claves duplicadas.
+
+'La implementación de la cantidad de entradas para claves en una tabla de ​hash ​es dinámica.'
+FALSO
+La implementación de las claves de hash pueden ser dinámicas o estáticas.
+
+'La implementación de la cantidad de entradas para una tabla de ​hash ​es dinámica.'
+FALSO
+Puede ser dinámica o estática.
+
+'Las funciones de ​hash ​no poseen funciones inversas.'
+FALSO
+Hay funciones hash que permiten la inversibilidad.
+'Si una función de ​hash ​no posee una buena dispersión, se van a producir muchas colisiones.'
+VERDADERO
+
+'La implementación de un ​hash ​permite obtener a partir de una entrada "x" una salida "y" única y reversible.'
+FALSO
+La función de hash, ante una entrada determinada, devuelve siempre la misma salida. Hay situaciones en las que no se puede recuperar la entrada teniendo la salida.
+
+---------------------------------------------------------------
+Hashing vs Árbol-B
+
+'La técnica de ​hashing ​es más rápida para el acceso a los datos que el Árbol B.'
+SinRespuesta
+Hashing es más veloz para accesos directos.
+Árbol B es más veloz para accesos secuenciales.
+
+'La técnica de ​hashing ​es más rápida para el tratamiento de claves duplicadas que el Árbol B.'
+SinRespuesta
+
+'La técnica de ​hashing ​es menos performante que el Árbol B para el manejo de claves duplicadas.'
+VERDADERO
+
+'Todos los DBMS utilizan la técnica de ​hashing ​para el armado de sus índices.'
+FALSO 
+No sólo se usa la técnica de hashing, sino también la de los árboles-B.
+
+'La técnica de ​hashing ​es más performante que Árbol B en la búsqueda de una clave existente en particular.'
+VERDADERO
+Hashing es más veloz para accesos directos. Árbol B mejor para rangos
+-------------------------------------------------------------------
+Algoritmo de Huffman
+'La compactación por algoritmo de Huffman permite redefinir el almacenamiento lógico de símbolos de tal manera que la pérdida de información sea despreciable.'
+FALSO
+La compactación por algoritmo de Huffman no pierde información, ya que es sin pérdida.
+
+'El método de compresión de Huffman es sin pérdida, por eso no es recomendable para compactar imágenes o video.'
+VERDADERO
+Para reducir el tamaño de imágenes o videos, el algoritmo de Huffman no me servirá (es sin pérdida).
+'La compresión que se logra mediante el algoritmo de Huffman es mayor cuando la variedad de caracteres diferentes que aparecen es menor.'
+VERDADERO
+Con menor cantidad de caracteres distintos, menor espacio ocupará cada carácter.
+
+'Un árbol de Huffman es siempre completo.'
+FALSO No quedan todas las hojas al mismo nivel
+
+'En un árbol de Huffman, si el código del caracter "m" es 1011, entonces no puede ningún otro caracter poseer el código 1011111'
+VERDADERO
+Solamente los maximales tienen código… Si es maximal, no puede tener hijos.
+
+'El algoritmo de Huffman obtiene los códigos comprimidos parseando un AB balanceado.'
+FALSO
+El árbol en el que se basa Huffman no está necesariamente balanceado.
+
+'El árbol en el que se basa Huffman es principal derecho balanceado.'
+FALSO El árbol en el que se basa Huffman no está necesariamente balanceado.
+
+'En el algoritmo de Huffman, la cantidad de nodos es la siguiente: (total de hojas * 2) 1.'
+VERDADERO
+
+'La reexpresión de caracteres al aplicar Huffman implica la disminución de 8 bits para la expresión de todos los caracteres.'
+FALSO
+Cuando aplicamos Huffman, puede haber caracteres que terminan pesando más de 8 bits.
+
+'Para comprimir en el algoritmo de Huffman, se debe leer en un ciclo cada carácter del archivo a comprimir y acceder al árbol desde la raíz para llegar a la hoja que contiene el carácter. Si desciendo por un hijo izquierdo,
+agrego un 0 como bit del código comprimido. Si desciendo por un hijo derecho, agrego un 1 como bit del código comprimido.'
+FALSO
+Para comprimir, se empieza a buscar desde el nodo maximal hacia la raíz. Para descomprimir, se empieza a buscar desde la raíz hasta el nodo maximal.
+
+'Si una palabra es capicúa, su código de Huffman también lo es.'
+FALSO
+Contraejemplo: el código Huffman de una palabra que empieza y termina con la misma letra, cuyo código es 001, será: 001…001.
+
+'En Huffman si un caracter posee el código 0011, entonces con seguridad existe al menos otro caracter cuyo código comienza con 001'
+VERDADERO
+-------------------------------------------------------------------------------
+Bases de Datos – Objetos de BD – RDBMS
+
+'Un ​constraint ​de tipo CHECK siempre puede ser reemplazado por un ​trigger​.'
+VERDADERO
+
+'El checksum es una de las técnicas utilizadas para corroborar la integridad de los datos.'
+VERDADERO
+
+'En un modelo de DB OLTP el concepto de transacción está asociado a la atomicidad de procesamiento.'
+FALSO
+El concepto de transacción no solamente está asociado a la atomicidad, sino también a la consistencia, al aislamiento y a la durabilidad (ACID).
+
+'Una vista en un RDBMS permite restringir el acceso a modelo y tener una vista simplificada del mismo.'
+VERDADERO
+Las vistas se usan para generar abstracciones más sencillas del modelo de datos. Además, pueden usarse para compartir código de una manera más segura ya que el cliente no tiene acceso al modelo de datos sino a la vista.
+
+'Las claves foráneas brindan integridad relacional al modelo de datos y es su principal función.'
+VERDADERO
+
+'Las claves foráneas eliminan redundancia de datos.'
+FALSO Aunque sean claves foráneas, puede haber redundancia de datos para mejorar la performance.
+
+'Los índices aseguran unicidad de claves.'
+FALSO
+
+'Mediante la utilización de ​triggers ​se puede simular la integridad referencial entre tablas de diferentes bases de datos.'
+VERDADERO
+
+'En PL-SQL, la única diferencia entre una función y un ​stored procedure ​es que puede retornar valores.'
+FALSO No es la única diferencia.
+
+'Las únicas restricciones posibles a aplicar en el modelo relacional son por tabla.'
+FALSO
+También se pueden aplicar restricciones a nivel de columna y de BD, por ejemplo.
+
+'Un índice en una BD relacional es una restricción al modelo físico.'
+FALSO
+Un índice es independiente del modelo físico y del modelo lógico.
+
+'Una tabla no puede tener dos claves foráneas que referencian a la misma tabla.'
+FALSO
+Contraejemplo: un registro de una tabla Persona podría tener una clave foránea a la tabla Persona que simbolice la relación madre y una que simbolice la relación padre.
+
+'Una clave primaria y una clave foránea son restricciones al modelo físico.'
+FALSO
+La clave primaria y la clave foránea son restricciones al modelo lógico.
+
+'La vista conceptual o lógica se define mediante un esquema conceptual. Este esquema conceptual se escribe en DDL. Contiene definiciones del contenido de la base, tipos de datos,restricciones, reglas de integridad, etc.'
+VERDADERO
+
+'La ejecución de una query sin filas de resultado dentro de un Trigger ​genera la cancelación de la transacción.'
+FALSO
+El trigger continúa ejecutando incluso ante una consulta que no devuelva filas.
+
+'La única forma de definir una restricción de integridad sobre una columna de una tabla es mediante la restricción CHECK.'
+FALSO
+Puedo usar triggers también.
+
+'Nunca es posible ejecutar la operación de INSERT sobre una vista.'
+FALSO
+Se puede hacer un INSERT sobre una vista.
+
+'En los RDBMS no está permitido hacer INSERTS sobre una vista.'
+FALSO Se pueden hacer INSERTs sobre una vista.
+
+'Luego de ejecutar una sentencia SQL para crear una tabla, si se ejecuta un rollback la tabla queda dropeada.'
+FALSO
+Para que quede dropeada, el CREATE TABLE se debería haber ejecutado dentro de una transacción.
+
+'Siempre es conveniente tener una tabla indexada por su clave primaria.'
+VERDADERO
+Ya que es uno de los campos que más se utiliza para comparar.
+
+'Una ​constraint ​es más eficiente que un ​trigger ​para validar el dominio de un atributo.'
+VERDADERO
+Una constraint se ejecuta en mucho menos tiempo que un trigger.
+
+'Una vista es el equivalente a una consulta estática de una o más tablas.'
+FALSO
+Una vista es una consulta dinámica ya que cada vez que se usa, consulta las tablas. Es decir, puedes ejecutar la misma vista en dos momentos distintos y que me retornen dos resultados diferentes.
+
+'La acción que ejecuta un ​trigger ​y el evento que lo dispara siempre se ejecutan de manera atómica.'
+VERDADERO
+La acción y el evento de un trigger conforman una transacción.
+
+'La normalización aplicada al diseño de un modelo de datos relacional nos permite desarrollar un modelo de manera estructurada, independiente de la performance que ese
+modelo pueda llegar a obtener.'
+FALSO
+La normalización no es independiente de la performance. En algunas ocasiones se desnormaliza para poder mejorar la performance.
+
+'Los ​triggers ​son las funciones con las que cuenta un RDBMS que permite controlar la integridad referencial.'
+VERDADERO
+Si y también las constraints
+
+'En un RDBMS, una función creada por el usuario puede modificar el contenido de una tabla de la base donde fue creada.'
+FALSO Una función no puede tener efecto colateral.
+
+'Un DBMS que soporta atomicidad, consistencia, aislamiento y durabilidad (ACID) puede ser considerado transaccional.'
+VERDADERO Toda transacción cumple con las siglas ACID (atomicidad, consistencia, aislamiento y durabilidad).
+
+'Las tablas INSERTED y DELETED pueden ser utilizados en ​stored procedures ​y funciones siempre que estos sean invocados dentro de un ​trigger​.'
+FALSO
+Los contextos de las funciones, de los stored procedures y de los triggers son distintos, por eso no las podrán usar a menos que se la pase por parámetro.
+
+
+'No se pueden crear índices en las vistas.'
+VERDADERO
+
+'Si se tiene una vista que relaciona varias tablas y una de ellas posee un índice, el motor no puede utilizarlo para generar una consulta más performante.'
+FALSO
+Las vistas pueden usar los índices de las tablas a las que referencian, pero no pueden crearse índices sobre esas vistas.
+
+'Se puede ejecutar un ​stored procedure ​en una consulta SELECT.'
+FALSO
+
+'Si se desea ocultar columnas de una tabla a una aplicación, el mejor objeto que podemos usar es un sinónimo.'
+FALSO
+Para este caso, si bien emplear un sinónimo no está mal, la vista es el mejor objeto a usar.
+
+'Si se desea que no se puedan eliminar registro de una tabla de auditoría, una opción es crear un ​trigger ​que lo impida.'
+VERDADERO
+Un trigger sobre un DELETE podría anular la eliminación del registro.
+
+'Gracias a los índices se puede asegurar la integridad referencial.'
+FALSO
+Los índices son utilizados para optimizar la busqueda de registros. La integridad se logra con constraints / triggers
+
+'La única manera para asegurar unicidad de los campos es con una clave primaria o con UNIQUE'
+FALSO
+También se pueden usar triggers. Para entornos transaccionales de alta concurrencia es conveniente setear el isolation level en repeatable read
+
+'En una bd relacional las vistas pueden ser utilizadas para brindar consistencia de datos'
+FALSO
+Las transacciones son para eso
+
+'Los indices en una base de datos relacion solo sirven para aumentar la velocidad de acceso a los datos'
+VERDADERO
+
+'Un motor de base de datos relacional utiliza los conceptos de Álgebra relacional para la resolución de las consultas'
+VERDADERO
+
+'El modelo estrella no cumple con al menos una forma normal.'
+VERDADERO
+
+'La ejecución sin filas de resultado de una query dentro de un trigger genera la cancelación de la transacción'
+FALSO
+----------------------------------------------------------------------
+Bussiness Intelligence (BDs multidimensionales – OLTP-OLAP – modelo STAR – Data Warehouse – Data Mining)
+
+'Hipercubo y Multicubo son dos técnicas utilizadas para el armado de la capa interna de una Base de Datos Multidimensional.'
+VERDADERO
+
+'Un modelo OLAP posee al menos una tabla de hechos con campos precalculados.'
+FALSO Un modelo OLAP no contiene tablas. El que contiene tablas es el Data Warehouse.
+
+'En un modelo OLAP se puede aplicar normalización en cualquier tabla que no sea la tabla de hechos.'
+FALSO
+Un modelo OLAP no contiene tablas. El que contiene tablas es el Data Warehouse. Y se puede aplicar normalización en las tablas de dimensión.
+
+'En un modelo OLAP se puede aplicar normalización en cualquier tabla de dimensión.'
+VERDADERO
+
+'El modelo OLAP no se puede implementar si no se tiene una BD Multidimensional.'
+FALSO
+El modelo OLAP se puede implementar sin una BD multidimensional, pero es conveniente no hacerlo.
+
+'En el modelo OLAP no es aplicable la normalización de datos.'
+FALSO Existen dos modelos: el modelo STAR (no normalizado) y el modelo SNOWFLAKE (normalizado).
+
+'No es posible obtener el mismo resultado de una consulta OLAP a partir del OLTP que dio origen al mismo.'
+FALSO
+
+'El modelo STAR no cumple con al menos una forma normal.'
+VERDADERO En el modelo STAR la tabla de dimensiones no están normalizadas.
+
+'Una tabla de dimensión en el modelo STAR es el equivalente a una cara en un cubo de información multidimensional.'
+FALSO
+Un atributo en la tabla de dimensión se corresponde con una cara en el cubo.
+
+'Las técnicas más comunes utilizadas en ​Data Mining ​son las redes neuronales, los árboles de decisión y las reglas de inducción.'
+VERDADERO
+
+'Data Mining ​son las técnicas y algoritmos utilizados para encontrar información y relaciones ocultas en un ​Data Warehouse​.'
+VERDADERO
+---------------------------------------------------------------------------
+Consultas SQL
+
+'Para poder realizar UNION entre dos consultas, las mismas deben tener la misma cantidad de columnas en el mismo orden e igual tipo de dato por cada una.'
+VERDADERO
+El UNION requiere que las dos consultas devuelvan la misma cantidad de columnas con el mismo tipo de datos. (Se entiende por columna, como las columnas impresas en los SELECT colum1, colum2, ect
+
+'Un SELECT con 3 tablas en el FROM consume igual recursos que 3 SELECT con una tabla cada una.'
+FALSO
+Tres consultas consumen más recursos que una consulta a tres tablas.
+
+'En SQL, una subconsulta ubicada en el WHERE siempre debe retornar una fila y una columna.'
+FALSO
+Una subconsulta en el WHERE podría retornar más de una columna si se lo usa con el operador IN.
+
+'Si en una consulta SELECT, hay al menos una función de grupo (COUNT, SUM, AVG, …) siempre debe colocarse la cláusula GROUP BY en dicho SELECT.'
+FALSO
+Se puede hacer SELECT COUNT (*) FROM Libros.
+
+'Un ​stored procedure ​posee la siguiente sentencia en su cuerpo: DELETE FROM tl_funciones WHERE tlstatus = 'Finalizada' Si al ejecutar el procedimiento no existe ningún registro que cumpla con
+la citada condición, entonces la ejecución se cancela.'
+FALSO
+Se ejecuta y no borra nada
+
+'Luego de ejecutar la siguiente instrucción:
+CREATE TABLE miTablita (campo1 VARCHAR(5), campo2 VARCHAR(5))
+y poblar la tabla, la siguiente igualdad va a ser siempre verdadera para cualquier set de datos posibles:
+SELECT COUNT(campo1) FROM miTablita = SELECT COUNT(campo2) FROM miTablita​.'
+FALSO
+Como COUNT no cuenta los NULLs cuando es aplicado sobre un campo, si el número de NULLs en cada campo es diferente, las consultas van a ser distintas.
+
+'Las siguientes consultas nunca devuelve el mismo resultado a excepción de la primera que siempre devuelve nada:
+SELECT 1 FROM tablita WHERE campo1 = 1 OR campo2 = 2
+SELECT 1 FROM tablita WHERE campo1 = 1 UNION SELECT 1 FROM tablita WHERE
+campo2 = 2'
+FALSO
+La primera no devuelve NULL, sino un registro 1 por cada registro donde su campo1=1 o bien su campo2=2.
+
+'Si una columna posee la ​constraint ​UNIQUE, entonces una sola fila como máximo puede contener NULL en dicha columna.'
+VERDADERO
+
+'Si existe un SELECT dentro de una cláusula HAVING, este debe retornar una fila y una columna.'
+FALSO
+Podría retornar más de una fila si se lo usa con el operador IN.
+
+'Las siguientes consultas devuelven lo mismo sin importar el set de datos:
+SELECT COUNT(campo1) FROM tabla = SELECT COUNT(*) FROM tabla​. La "tabla" sólo tiene la columna campo1.'
+FALSO
+No devuelven lo mismo.
+
+'COUNT(campo1) no cuenta los valores nulos mientras que COUNT(*) sí cuenta los valores nulos. Una constraint de check puede utilizarse para validar que una fecha pertenezca a un rango predefinido'
+VERDADERO
