@@ -197,6 +197,29 @@ el vertice destino tambien va a tener al propio en su lista de adyacencia (o un 
 Representación de Platz: Utiliza structs para representar un nodo con su informacion y un puntero al siguiente nodo, tien otro struct 
 para representar la arista y de donde viene y hacia donde va (y un puntero a la siguiente arista)
 
+'Describa la búsqueda de una clave única en un árbol B.'
+
+La búsqueda de una clave única en un árbol B consiste en ubicarse en el nodo raíz del árbol, si la clave se encuentra ahí se termina la búsqueda, caso contrario, se selecciona entre los hijos al que se encuentra entre dos 
+valores de clave que son menor y mayor que el buscado respectivamente y se repite el proceso hasta encontrarlo.
+En el caso que se llegue a una hoja y no pueda continuar la búsqueda de la clave, entonces esa clave no se encuentra en el árbol.
+Enumerando, los pasos a seguir son:
+Seleccionar como nodo actual la raíz del árbol. Si el árbol está vacío la búsqueda falla.
+Comprobar si la clave se encuentra en el nodo actual:
+Si la clave está presente, se termina la búsqueda.
+Si la clave no está presente, hay 3 posibilidades a considerar: 
+
+    • Si el elemento x a buscar es menor que K1(clave) , entonces se continúa buscando en el subárbol T0 .
+
+    • Si x es más grande que K n-1 , se continúa buscando en el subárbol Tn-1 .
+
+    • Si existe un i tal que 1 ≤ i ≤ n - 1 para el cual K i ≤ x ≤ K i+1 entonces se continúa buscando en el árbol Ti .
+
+'Qué beneficios brinda la aplicación de la normalización a diseñó de un modelo de bases de datos?'
+La normalización evita todo tipo de redundancias (duplicaciones de datos) y a su vez, evita problemas de actualización de los datos en la tabla y protege 
+la integridad de los mismos evitando o reduciendo anomalías en la manipulación de datos; dejando de esta forma datos precisos, únicos y relevantes según las 
+necesidades del sistema. Al disminuir el volumen de los datos, facilita y agiliza notablemente el acceso, el mantenimiento y consultas a los mismos. 
+También reduce el impacto de los cambios en los datos.
+
 'La tabla de hechos en una arquitectura de Data Warehouse contiene información primaria del dominio del negocio.'
 Nro de cliente, edad, ingresos, variando según las necesidades de los sujetos que van a consumir la base.
 Contiene las primary keys a partir de las cuales cada dimension table se joinea para explotar un aspecto del negocio.
